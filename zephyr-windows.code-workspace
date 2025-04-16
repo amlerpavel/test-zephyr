@@ -10,10 +10,12 @@
 
 		// IntelliSense
 		"C_Cpp.default.compilerPath": "${userHome}/zephyr-sdk-0.17.0/riscv64-zephyr-elf/bin/riscv64-zephyr-elf-gcc",
-		"C_Cpp.default.compileCommands": "${workspaceFolder}/${input:appName}/build/compile_commands.json",
+		"C_Cpp.default.compileCommands": "${workspaceFolder}/hello_world/build/compile_commands.json",
 
 		// File Associations
-		"files.associations": {}
+		"files.associations": {},
+
+		"python.venvPath": "${workspaceFolder}/../.venv"
 	},
 	"tasks": {
 		"version": "2.0.0",
@@ -25,13 +27,14 @@
 					"kind": "build",
 					"isDefault": true
 				},
-				"command": "${input:west-workspace-folder}/.venv/Scripts/west",
+				"command": "${workspaceFolder}/../.venv/Scripts/west",
 				"args": [
 					"build",
-					"-p",
-					"auto",
 					"-b",
-					"esp32c3_devkitc"
+					"${input:board}",
+					"${input:appName}",
+					"-d",
+					"${input:appName}/build"
 				],
 				"problemMatcher": [
 					"$gcc"
@@ -43,7 +46,7 @@
 				"group": {
 					"kind": "build",
 				},
-				"command": "${input:west-workspace-folder}/.venv/Scripts/west",
+				"command": "${workspaceFolder}/../.venv/Scripts/west",
 				"args": [
 					"build",
 					"-p",
@@ -58,7 +61,7 @@
 			{
 				"label": "West Flash",
 				"type": "shell",
-				"command": "${input:west-workspace-folder}/.venv/Scripts/west",
+				"command": "${workspaceFolder}/../.venv/Scripts/west",
 				"args": [
 					"flash"
 				],
@@ -73,11 +76,11 @@
 				"type": "pickString",
 				"description": "Select the application to build",
 				"options": [
-				"app1",
+				"hello_world",
 				"app2",
 				"app3"
 				],
-				"default": "app1"
+				"default": "hello_world"
 			},
 			{
 				"id": "board",
