@@ -1,0 +1,22 @@
+manifest:
+  remotes:
+    - name: zephyrproject-rtos
+      url-base: https://github.com/zephyrproject-rtos
+
+    - name: my-project-repo
+      url-base: https://github.com/amlerpavel/test-zephyr
+
+  projects:
+    - name: zephyr
+      remote: zephyrproject-rtos
+      revision: v4.1.0
+      import:
+        name-allowlist:
+          - hal_espressif
+          
+    #- name: hello_world
+    #  remote: my-project-repo
+    #  path: prj-zephyr/hello_world
+
+  self:
+    path: prj-zephyr  # Umístění pro tvoje vlastní projekty
